@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<link rel ="stylesheet" type="text/css" href="/css/login.css">
+
+<title>Insert title here</title>
+</head>
+<body>
+    <div class="login">
+        <div class="heading">
+          <h2>Sign in</h2>
+          <form th:object = "${data}" method = "get" th:action = "@{/caribyNik}>
+      
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              <input type="text" class="form-control" placeholder="Username or email" th:field = "*{nik}">
+                </div>
+  
+              <button type="submit" class="float">Login</button>
+             </form>
+               </div>
+       </div>
+
+
+       <div th:insert="fragments/footer :: footer"></div>
+
+</body>
+</html>

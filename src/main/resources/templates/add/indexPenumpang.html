@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="ISO-8859-1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>  
+    <link rel ="stylesheet" type="text/css" href="/css/MainTable.css">
+    <link rel ="stylesheet" type="text/css" href="/css/MainTable.css">
+    <title> Pemesanan Bus</title>
+</head>
+<body>
+
+    <center>
+    <div class="table-responsive">
+        <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Nik</th>
+                        <th>Nama</th>	
+                        <th>No telepon</th>
+                     			
+                    </tr>
+                </thead>
+                <tbody>
+                
+                <tr class="active-row" th:each = "Data :${data}">
+                    <td th:text ="${Data.nik}"></td>
+                    <td th:text ="${Data.nama}"></td>
+                    <td th:text ="${Data.telepon}"></td>
+
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <br>
+        <p> <a href ="/dashboard" target ="${data}"> back to home </a> </p>
+    </center>
+
+
+
+
+
+</body>
+</html>

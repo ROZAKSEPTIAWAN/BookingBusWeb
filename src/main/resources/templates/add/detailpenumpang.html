@@ -1,0 +1,35 @@
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>  
+    <link rel ="stylesheet" type="text/css" href="/css/MainTable.css">
+	
+	<title>Detail Penumpang</title>
+</head>
+
+<body>
+	<div class="mantap2">
+		<div class="mantap3">
+			<div th:replace= "fragments/name :: name(${data.nama})"> </div>
+			<h1 class="mantap1 mantap3">Anda telah terdaftar, dengan data berikut;</h1>
+		</div>
+	</div>
+	<table class = "table">	
+		<tr>
+			<td>NIK</td> 
+			<td th:text="${data.nik}"/td>
+		</tr>
+        <tr>
+			<td>Nama</td> 
+			<td th:text="${data.nama}"/td>
+		</tr>
+        <tr>
+			<td>Telepon</td> 
+			<td th:text="${data.telepon}"/td>
+		</tr>
+	</table>
+</body>
+
+</html>

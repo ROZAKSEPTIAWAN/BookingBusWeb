@@ -1,0 +1,42 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	
+	<title>Detail Booking</title>
+</head>
+
+<body>
+	<div class="mantap2">
+		<div class="mantap3">
+			<h1 class="mantap1 mantap3">Pemesanan telah berhasil dengan data;</h1>
+		</div>
+	</div>
+	<table class = "table">
+
+		<tr class = "thead">
+            <th scope="col">id booking</td>
+			<th scope="col">nik</td>
+            <th scope="col">nama</td>
+			<th scope="col">id keberangkatan</td>
+			<th scope="col">waktu</td>
+			<th scope="col">perusahaan</td>
+			<th scope="col">kelas</td>
+            <th scope="col">harga</td>
+		</tr>
+	
+		<tr th:each="anunya : ${data}">
+            <td th:text="${anunya.id}"/td> 
+			<td th:text="${anunya.nik.nik}"/td> 
+            <td th:text="${anunya.nik.nama}"/td> 
+			<td th:text="${anunya.id_keberangkatan.id}"/td>
+            <td th:text="${anunya.id_keberangkatan.tanggal}"/td></td>
+            <td th:text="${anunya.id_keberangkatan.no_polisi.nama_perusahaan.nama}"/td></td>
+            <td th:text="${anunya.id_keberangkatan.kelas}"/td> 
+            <td th:text="${anunya.id_keberangkatan.harga}"/td> 
+		</tr>
+	</table>
+</body>
+
+</html>
