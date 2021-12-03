@@ -4,10 +4,11 @@ package com.websitebus.websitebus.controller;
 
 import java.util.List;
 
-
-
-
+import com.websitebus.websitebus.model.Booking;
+import com.websitebus.websitebus.model.Keberangkatan;
 import com.websitebus.websitebus.model.Penumpang;
+import com.websitebus.websitebus.repository.BookingRepository;
+import com.websitebus.websitebus.repository.KeberangkatanRepository;
 import com.websitebus.websitebus.repository.PenumpangRepository;
 
 
@@ -18,20 +19,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
-
-
-
 @Controller
 public class LoginController {
 
-
+    public String nik_in;
 
     @Autowired
 	PenumpangRepository penumpangRepo;
 
-  
- 
+    @Autowired
+    KeberangkatanRepository keberangkatanRepo;
+
+    @Autowired
+    BookingRepository BookingRepo;
     @GetMapping("/indexPenumpang")
 	public String getAllDataPenumpang (Model model){
 		List<Penumpang> data = penumpangRepo.findAll();
@@ -46,23 +46,6 @@ public class LoginController {
 		return "add/indexPenumpang";
 	}
 
-    // @GetMapping("/loginPenumpang")
-    // public String loginpenumpang (Model nik){
-    //     nik.addAttribute("data", new Penumpang());
-    //     return "add/Login";
-    // }
-
-
-    // @GetMapping("/caribyNik")
-    // public String cariNik(String nik){
-    //     List <Penumpang> hasil = penumpangRepo.findBynik(nik);
-    //     if (hasil.size()==0){
-    //         return "add/kenihilan";
-    //     } else {
-    //         return "redirect:/indexPenumpang";
-    //     }
-    // }
-
     
     @GetMapping("/loginpenumpang")
     public String loginpenumpang (Model model){
@@ -74,6 +57,7 @@ public class LoginController {
     public String loginresult(@ModelAttribute("data")Penumpang penumpang, Model model){
         String alamathasil ="/";
         String nikInput = penumpang.getNik();
+        nik_in=nikInput;
         List<Penumpang> daftarNikResult = penumpangRepo.findBynik(nikInput);
         if(daftarNikResult.size()==0){
             alamathasil = "add/kenihilan";
@@ -86,19 +70,26 @@ public class LoginController {
             }else{
                 alamathasil="add/kenihilan";
             }
-
-            // model.addAttribute("data", daftarNikResult.get(0));
-            // alamathasil = "add/detailpenumpang";
-            
+           
         }
         return alamathasil;
         }
 
         @GetMapping("/bookingkeberangkatan")
         public String bookingKeberangkatan(Model model){
-            
+            model.addAttribute("listKeberangkatan", keberangkatanRepo.findAll());
+            model.addAttribute("data",new Booking());
+            model.addAttribute("nikPenumpang", nik_in);
             return "add/home";
         }
+
+        @PostMapping("/bookingprocess")
+	    public String bookingProcess (@ModelAttribute ("data") Booking booking, Model model){
+		    BookingRepo.save(booking); 
+		    return "new/showBookingResult";
+	    }
+
+
 
         @GetMapping("/ketersediaan")
         public String beranda (Model model){
@@ -107,19 +98,43 @@ public class LoginController {
         }
         @GetMapping("/cari-keberangkatan")
         public String cariKeberangkatan (Model model){
-          
+            model.addAttribute("formData", new Keberangkatan());
             return "new/showCariKeberangkatan";
         }
 
-        @GetMapping("/penumpang")
-        public String penumpang (Model model){
-          
-            return "new/showDetailPenumpang";
+
+        @GetMapping("/penumpang/profile")
+        public String penumpangProfile (Model model){
+            List<Penumpang> penum=penumpangRepo.findBynik(nik_in);
+            model.addAttribute("rowData", penum);
+            return "new/penumpang/showDetailPenumpang_profile";
+        }
+
+        @GetMapping("/penumpang/pemesanan")
+        public String penumpangPemesanan (Model model){
+            List<Penumpang> penum=penumpangRepo.findBynik(nik_in);
+            model.addAttribute("rowData", penum);
+            return "new/penumpang/showDetailPenumpang_pemesanan";
+        }
+
+        @GetMapping("/penumpang/histori")
+        public String penumpangHistori (Model model){
+            List<Penumpang> penum=penumpangRepo.findBynik(nik_in);
+            model.addAttribute("rowData", penum);
+            return "new/penumpang/showDetailPenumpang_histori";
+        }
+
+        @GetMapping("/penumpang/pembatalan")
+        public String penumpangPembatalan(Model model){
+            List<Penumpang> penum=penumpangRepo.findBynik(nik_in);
+            model.addAttribute("rowData", penum);
+            return "new/penumpang/showDetailPenumpang_pembatalan";
         }
 
         @GetMapping("/pembatalan")
         public String pembatalan(Model model){
-          
+            List<Penumpang> penum=penumpangRepo.findBynik(nik_in);
+            model.addAttribute("rowData", penum);
             return "new/showPembatalan";
         }
 

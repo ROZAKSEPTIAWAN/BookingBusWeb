@@ -166,12 +166,6 @@ public class BusController {
 		return "add/cancelBooking";
 	}
 
-	/// searching departure
-	@GetMapping("/carikeberangkatan")
-    public String cariKeberangkatan(Model model) {
-        model.addAttribute("formData", new Keberangkatan());
-        return "add/carikeberangkatan";
-    }
 
     @PostMapping("/carikeberangkatanresult")
     public String cariKeberangkatanResult(@ModelAttribute("data") Keberangkatan formData, Model model2) {
@@ -180,18 +174,13 @@ public class BusController {
         String terminalAwal = formData.getJurusan().getTerminal_awal();
         List<Fk> keberangkatanBeneran = keberangkatanRepo.getDetail(terminalAwal, tanggal);
         if (keberangkatanBeneran.size() == 0) {
-            alamatHasil = "kenihilankeberangkatan";
+            alamatHasil = "new/showKenihilanKeberangkatan";
         } else {
             model2.addAttribute("data", keberangkatanBeneran);
-            alamatHasil = "add/listdetailkeberangkatan";
+            alamatHasil = "new/showDetailKeberangkatan";
         }
         return alamatHasil;
     }
-
-	// @PostMapping("/resultkeberangkatan")
-	// public String result (@ModelAttribute ("data")Booking booking ,Model model){
-	// 	String nik = booking.getPenumpang().getNik();
-	// }
 	
 
 }

@@ -18,25 +18,29 @@
         <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="/bookingkeberangkatan">Booking Keberangkatan</a>
         <a class="flex-sm-fill text-sm-center nav-link" href="/cari-keberangkatan" >Cari Keberangkatan</a>
         <a class="flex-sm-fill text-sm-center nav-link" href="/ketersediaan">Ketersediaan</a>
-        <a class="flex-sm-fill text-sm-center nav-link" href="/penumpang">detail penumpang</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="/penumpang/profile">detail penumpang</a>
         <a class="flex-sm-fill text-sm-center nav-link" href="/pembatalan" >Pembatalan Keberangkatan</a>
         <a class="flex-sm-fill text-sm-center nav-link text-danger" href="/loginpenumpang" >Logout</a>
       </nav>
 
     <div class="card mt-5 pl-3" >
            <div class="container mt-3 ml-5">
-            <form   th:object = "${data}" method = "post" th:action = "@{/detailBooking}" class="center w-50 h-50"> 
+            <form   th:object = "${data}" method = "post" th:action = "@{/bookingprocess}" class="center w-50 h-50"> 
                
                   <div class="mb-3 row">
                     <label for="staticEmail" class="col-sm-6 col-form-label">Id Keberangkatan</label>
                     <div class="col-sm-6">
-                      <input type="text" class="form-control">
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <label for="inputPassword" class="col-sm-6 col-form-label">NIK</label>
-                    <div class="col-sm-6">
-                      <input type="text" class="form-control" id="inputPassword">
+
+                      <select class="form-select" aria-label="Default select example" th:field = "*{keberangkatan}">
+                        <option th:selected="*{keberangkatan}" selected value=""></option>
+                        <div th:each="ls :${listKeberangkatan}">
+                        <option th:value="${ls.id}" th:text="${ls.id}"></option>
+                        </div>
+                      </select>
+
+                      <input class="form-control" th:field ="*{penumpang}" th:text="${nikPenumpang}" value="${nikPenumpang}"></input>
+                      <!-- <input type="text" th:text="${ls.id}" class="form-control"> -->
+
                     </div>
                   </div>
                   <p><button class = "btn btn-primary" type ="submit">Submit</button></p>

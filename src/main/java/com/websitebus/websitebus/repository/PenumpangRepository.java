@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface PenumpangRepository extends JpaRepository<Penumpang,String>{
 
-    List<Penumpang> findBynik (String nik);
+    List<Penumpang> findBynik (String nik);;
 
     @Query
 	(value = "SELECT password FROM penumpang WHERE nik=?1",nativeQuery= true)

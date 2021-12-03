@@ -7,13 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-    <title>Document</title>
+    <title>Keberangkatan Ditemukan</title>
 </head>
 <body>
     <main>
         <div class="container mt-3">
             <nav class="nav nav-pills flex-column flex-sm-row">
-                <a class="flex-sm-fill text-sm-center nav-link " aria-current="page" href="/bookingkeberangkatan">Booking Keberangkatan</a>
+                <a class="flex-sm-fill text-sm-center nav-link" aria-current="page" href="/bookingkeberangkatan">Booking Keberangkatan</a>
                 <a class="flex-sm-fill text-sm-center nav-link active" href="/cari-keberangkatan" >Cari Keberangkatan</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="/ketersediaan">Ketersediaan</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="/penumpang/profile">detail penumpang</a>
@@ -21,28 +21,33 @@
                 <a class="flex-sm-fill text-sm-center nav-link text-danger" href="/loginpenumpang" >Logout</a>
               </nav>
         
-            <div class="card mt-5 pl-3" >
+              <p class="mt-5">Daftar Keberangkatan</p>
+            <div class="card mt-1 pl-3" >
+                <div class="container w-100 mt-3 ml-5">
+                   <table class = "table">
 
-                <div class="container w-75 mt-3 ml-5">
-                 <form th:object="${formData}" th:action="@{/carikeberangkatanresult}" method="post">
-                    <div class="form-group row mt-3">
-                      <label class="col-sm-4" for="nik">Tanggal</label>
-                        <div class="col-sm-8">
-                      <input type="text" class="form-control" id="tanggal" placeholder="Tanggal"  th:field="*{tanggal}">
-                        </div>
-                    </div>
-
-                    <div class="form-group row mt-5">
-                      <label class="col-sm-4" for="nik">Terminal Keberangkatan</label>
-                      <div class="col-sm-8" >
-                      <input type="text" class="form-control" id="terminalawal" placeholder="Terminal Awal"  th:field="*{jurusan.terminal_awal}">
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-5 mb-3">Submit</button>
-                  </form>
+                    <tr class = "thead">
+                        <th scope="col">id</td>
+                        <th scope="col">deskripsi</td>
+                        <th scope="col">waktu</td>
+                        <th scope="col">perusahaan</td>
+                        <th scope="col">kelas</td>
+                        <th scope="col">harga</td>
+                    </tr>
+                
+                    <tr th:each="anunya : ${data}">
+                        <td th:text="${anunya.id}"/td> 
+                        <td th:text="${anunya.deskripsi}"/td>
+                        <td th:text="${anunya.waktu}"/td>
+                        <td th:text="${anunya.perusahaan}"/td>
+                        <td th:text="${anunya.kelas}"/td>
+                        <td th:text="${anunya.harga}"/td>
+                    </tr>
+                </table>
                 </div>
             </div>
+            <a class="flex-sm-fill text-sm-left nav-link" href="/cari-keberangkatan" >kembali</a>
         </div>
-        </main>
+    </main>
 </body>
 </html>
