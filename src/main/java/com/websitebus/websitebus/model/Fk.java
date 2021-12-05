@@ -5,6 +5,8 @@ public interface Fk {
 
 	String getDeskripsi();
 
+	String getTerminal_awal();
+
 	String getWaktu();
 
 	String getPerusahaan();

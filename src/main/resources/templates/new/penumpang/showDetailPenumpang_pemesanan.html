@@ -6,11 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+    
+    <link rel ="stylesheet" type="text/css" href="/assets/css/ui.css">
     <title>Sedang dipesan</title>
 </head>
 <body>
+  
+  <div id="container">
+    <div id="header" >
+      <div th:insert="fragments/header :: header"></div>
+  </div>
 
+  <div id="body">
     <main>
         <div class="container mt-3">
             <nav class="nav nav-pills flex-column flex-sm-row">
@@ -18,22 +25,21 @@
                 <a class="flex-sm-fill text-sm-center nav-link" href="/cari-keberangkatan" >Cari Keberangkatan</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="/ketersediaan">Ketersediaan</a>
                 <a class="flex-sm-fill text-sm-center nav-link  active" href="/penumpang">detail penumpang</a>
-                <a class="flex-sm-fill text-sm-center nav-link" href="/pembatalan" >Pembatalan Keberangkatan</a>
                 <a class="flex-sm-fill text-sm-center nav-link text-danger" href="/loginpenumpang" >Logout</a>
               </nav>
         
             <div class="card mt-5 pl-3" >
                 <div class="container w-100 mt-3 ml-5">
                   <div class="row" th:each="data :${rowData}">
-                    <div class="col-4">
+                    <div class="col-3">
                         <div class="container">
-                            <img src="https://cdn1-production-images-kly.akamaized.net/6stx738Kee_NZ-_vHGr8ibU9Fow=/640x480/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/1439641/original/042027300_1482131661-reddit.jpg" class="rounded-circle" height="150" width="150">
+                          <a th:href="@{/penumpang/profile/upload}"> <img th:src="@{'/assets/images/'+${data.nama}+'.jpg'}" class="rounded-circle" height="150" width="150"> </a>
                             <div class="container mt-3">
                                 <p th:text="${data.nama}"></p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-8">
+                    <div class="col-9">
                         <ul class="nav nav-tabs">
                             <li class="nav-item">
                               <a class="nav-link" href="/penumpang/profile">Profile</a>
@@ -41,19 +47,51 @@
                             <li class="nav-item">
                               <a class="nav-link active" href="/penumpang/pemesanan">Sedang dipesan</a>
                             </li>
-                            <li class="nav-item">
-                              <a class="nav-link" href="/penumpang/histori">History</a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link" href="/penumpang/pembatalan">pembatalan</a>
-                            </li>
+            
                           </ul>
+
+                          <div class="card mt-1 pl-3" >
+                            <div class="container w-100 mt-3 ml-5">
+                              <table class = "table">
+                 
+                               <tr class = "thead">
+                                   <th scope="col">id</td>
+                                   <th scope="col">deskripsi</td>
+                                   <th scope="col">waktu</td>
+                                   <th scope="col">perusahaan</td>
+                                   <th scope="col">kelas</td>
+                                   <th scope="col">harga</td>
+                               </tr>
+                           
+                               <tr th:each="anunya : ${lsBooking}">
+                                   <td th:text="${anunya.id}"></td>
+                                   <td th:text="${anunya.deskripsi}"></td>
+                                   <td th:text="${anunya.waktu}"></td>
+                                   <td th:text="${anunya.perusahaan}"></td>
+                                   <td th:text="${anunya.kelas}"></td>
+                                   <td th:text="${anunya.harga}"></td>
+                                   <td >
+                                 
+                                      <a  th:href="@{'/penumpang/pemesanan/cancel/'+${anunya.id}}" class="btn-sm btn-danger" >Cancel</a>
+                                
+                                   </td>
+                               </tr>
+                    
+                               </table>
+                            </div>
+                         </div>
                     </div>
                   </div>
                 </div>
             </div>
         </div>
         </main>
+      </div>
+
+      
+      <div id="footer">
+        <div th:insert="fragments/footer :: footer"></div>
+      </div>
     
 </body>
 </html>

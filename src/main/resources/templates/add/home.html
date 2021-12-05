@@ -7,19 +7,25 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+    <link rel ="stylesheet" type="text/css" href="assets/css/ui.css">
 
     <title>Document</title>
 </head>
 <body>
-<main>
-<div class="container mt-3">
+  <div id="container">
+    <div id="header" >
+      <div th:insert="fragments/header :: header"></div>
+  </div>
+
+  <div id="body">
+  <main>
+  <div class="container mt-3">
     <nav class="nav nav-pills flex-column flex-sm-row">
+      <a class="flex-sm-fill text-sm-center nav-link " href="/home">Home</a>
         <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="/bookingkeberangkatan">Booking Keberangkatan</a>
         <a class="flex-sm-fill text-sm-center nav-link" href="/cari-keberangkatan" >Cari Keberangkatan</a>
         <a class="flex-sm-fill text-sm-center nav-link" href="/ketersediaan">Ketersediaan</a>
         <a class="flex-sm-fill text-sm-center nav-link" href="/penumpang/profile">detail penumpang</a>
-        <a class="flex-sm-fill text-sm-center nav-link" href="/pembatalan" >Pembatalan Keberangkatan</a>
         <a class="flex-sm-fill text-sm-center nav-link text-danger" href="/loginpenumpang" >Logout</a>
       </nav>
 
@@ -30,7 +36,6 @@
                   <div class="mb-3 row">
                     <label for="staticEmail" class="col-sm-6 col-form-label">Id Keberangkatan</label>
                     <div class="col-sm-6">
-
                       <select class="form-select" aria-label="Default select example" th:field = "*{keberangkatan}">
                         <option th:selected="*{keberangkatan}" selected value=""></option>
                         <div th:each="ls :${listKeberangkatan}">
@@ -38,15 +43,15 @@
                         </div>
                       </select>
 
-                      <input class="form-control" th:field ="*{penumpang}" th:text="${nikPenumpang}" value="${nikPenumpang}"></input>
-                      <!-- <input type="text" th:text="${ls.id}" class="form-control"> -->
 
+                      <select hidden class="form-select" aria-label="Default select example" th:field = "*{penumpang}">
+                        <option th:selected="*{penumpang}" selected value="" th:value="${nikPenumpang}"></option>
+                      </select>
+              
                     </div>
                   </div>
                   <p><button class = "btn btn-primary" type ="submit">Submit</button></p>
             </form>
-            
-            <p> <a href ="/dashboard" target ="${data}"> back to home </a> </p>
           </div>
             
         
@@ -54,6 +59,12 @@
     </div>
 </div>
 </main>
+<br> <br> <br> <br>
+</div>
+
+<div id="footer">
+  <div th:insert="fragments/footer :: footer"></div>
+</div>
     
 </body>
 </html>

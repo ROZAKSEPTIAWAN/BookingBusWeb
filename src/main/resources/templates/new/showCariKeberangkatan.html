@@ -6,18 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel ="stylesheet" type="text/css" href="assets/css/ui.css">
 
-    <title>Document</title>
+    <!-- <link rel ="stylesheet" type="text/css" href="assets/css/layout.css"> -->
+    
+    <title>Cari Keberangkatan</title>
 </head>
 <body>
+
+
+  <div id="container">
+    <div id="header" >
+      <div th:insert="fragments/header :: header"></div>
+  </div>
+
+
+ <div id="body">
     <main>
         <div class="container mt-3">
             <nav class="nav nav-pills flex-column flex-sm-row">
+                <a class="flex-sm-fill text-sm-center nav-link " href="/home">Home</a>
                 <a class="flex-sm-fill text-sm-center nav-link " aria-current="page" href="/bookingkeberangkatan">Booking Keberangkatan</a>
                 <a class="flex-sm-fill text-sm-center nav-link active" href="/cari-keberangkatan" >Cari Keberangkatan</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="/ketersediaan">Ketersediaan</a>
                 <a class="flex-sm-fill text-sm-center nav-link" href="/penumpang/profile">detail penumpang</a>
-                <a class="flex-sm-fill text-sm-center nav-link" href="/pembatalan" >Pembatalan Keberangkatan</a>
                 <a class="flex-sm-fill text-sm-center nav-link text-danger" href="/loginpenumpang" >Logout</a>
               </nav>
         
@@ -28,21 +40,43 @@
                     <div class="form-group row mt-3">
                       <label class="col-sm-4" for="nik">Tanggal</label>
                         <div class="col-sm-8">
-                      <input type="text" class="form-control" id="tanggal" placeholder="Tanggal"  th:field="*{tanggal}">
+                      <input type="date" class="form-control" id="tanggal" placeholder="Tanggal"  th:field="*{tanggal}">
                         </div>
                     </div>
-
+                    
                     <div class="form-group row mt-5">
+                      <label class="col-sm-4" for="nik">Terminal Keberangkatan</label>
+                      <div class="col-sm-8" >
+                    <select class="form-select" aria-label="Default select example" th:field = "*{jurusan.terminal_awal}">
+                      <option th:selected="*{jurusan}" selected value=""></option>
+                      <div th:each="ls :${listKeberangkatan}">
+                      <option th:value="${ls.jurusan.terminal_awal}" th:text="${ls.jurusan.terminal_awal}"></option>
+                      </div>
+                    </select>
+                  </div>
+                </div>
+
+                    <!-- <div class="form-group row mt-5">
                       <label class="col-sm-4" for="nik">Terminal Keberangkatan</label>
                       <div class="col-sm-8" >
                       <input type="text" class="form-control" id="terminalawal" placeholder="Terminal Awal"  th:field="*{jurusan.terminal_awal}">
                       </div>
-                    </div>
+                    </div> -->
                     <button type="submit" class="btn btn-primary mt-5 mb-3">Submit</button>
                   </form>
                 </div>
             </div>
         </div>
+
         </main>
+        <br><br>
+      </div>
+      
+        <div id="footer">
+          <div th:insert="fragments/footer :: footer"></div>
+        </div>
+
+      </div>
+    
 </body>
 </html>

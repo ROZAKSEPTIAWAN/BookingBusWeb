@@ -1,13 +1,12 @@
 
-.header{
-    background-color: mediumpurple;
-    height: 90px;
-}
+
 
 .header-logo{
     font-size: 37px;
     float: left;
     padding: 20px 40px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .header-list li{
@@ -15,8 +14,9 @@
     padding: 33px 20px;
 }
 
+
 .main{
-    padding: 50px 80px;
+    padding: 100px 80px;
     }
     .copy-container h1{
     font-size:40px;
@@ -30,8 +30,11 @@
   }
 
   .contents{
-    height:500px; 
-    margin-top: 20px;
+    height:450px; 
+    margin-top: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
    }
    
    .section-title{
@@ -45,8 +48,9 @@
    }
    
    .contents-item{
-     float:left;
+     float:right;
      margin-right: 40px;
+    
    }
 
    .contents-item{
@@ -55,7 +59,7 @@
    }
 
    input,textarea{
-    width:10px;
+    width:400px;
     margin-top:10px;
     margin-bottom:30px;
     padding:20px;
@@ -67,20 +71,78 @@
     color:#889eab;
   }
 
-.footer{
+/* .footer{
     background-color: #2f5167;
     color: #fff;
-    height: 120px;
+    height: 186px;
     padding: 40px;
-}
+    margin:  10px;
+} */
 
 .footer-logo{
     font-size : 32px;
     float:left;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .footer-list {
     float :right;    
 }
+
 .footer-list li{
     padding-bottom: 20px;
   }
+
+html,
+body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+#container {
+   min-height:100%;
+   position:relative;
+}
+#header {
+  margin:  10px;
+  background-color: #01B0D3;
+  height: 90px;
+
+}
+#body {
+   padding:10px;
+   padding-bottom:60px;   /* sesuaikan dengan tinggi footer */
+}
+
+
+
+.footer{
+  background-color: #242333;
+  color: #fff;
+  height: 186px;
+  padding: 40px;
+  margin:  10px;
+}
+
+#img{
+
+  width: 200 px;
+  height: 200px;
+}
+
+/*CSS PETA RESPONSIVE */
+.peta-responsive{
+  overflow:hidden;
+  padding-bottom:56.25%;
+  position:relative;
+  height:0;
+}
+.peta-responsive iframe{
+  left:0;
+  top:0;
+  height:50%;
+  width:50%;
+  position:absolute;
+}
+
+
+

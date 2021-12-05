@@ -58,12 +58,7 @@ public class BusController {
 		
 	}
 	
-	
-	
-	@GetMapping("/index")
-	public List<Keberangkatan> index(){
-		return keberangkatanRepo.findAllindex();
-	}
+
 
 	@GetMapping("/indexaneh")
 	public List<Fk> indexData(){
@@ -103,18 +98,8 @@ public class BusController {
 		return "add/Dashboard";
 	}
 
-	// penumpang
-	@GetMapping("/addPenumpang")
-	public String add (Model model ) {
-		model.addAttribute("data",new Penumpang());
-		return "add/addPenumpang";
-	}
+	
 
-	@PostMapping("/save")
-	public String saveData(@ModelAttribute("data") Penumpang penumpang) {
-		penumpangRepo.save(penumpang);
-		return "redirect:/indexPenumpang "; //meminta browser untuk request url lain
-	}
 
 	// Keberangkatan
 	@GetMapping("/addKeberangkatan")
@@ -165,22 +150,6 @@ public class BusController {
 		model.addAttribute("data",data);
 		return "add/cancelBooking";
 	}
-
-
-    @PostMapping("/carikeberangkatanresult")
-    public String cariKeberangkatanResult(@ModelAttribute("data") Keberangkatan formData, Model model2) {
-        String alamatHasil = "/";
-        String tanggal = formData.getTanggal();
-        String terminalAwal = formData.getJurusan().getTerminal_awal();
-        List<Fk> keberangkatanBeneran = keberangkatanRepo.getDetail(terminalAwal, tanggal);
-        if (keberangkatanBeneran.size() == 0) {
-            alamatHasil = "new/showKenihilanKeberangkatan";
-        } else {
-            model2.addAttribute("data", keberangkatanBeneran);
-            alamatHasil = "new/showDetailKeberangkatan";
-        }
-        return alamatHasil;
-    }
 	
 
 }

@@ -1,0 +1,28 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	
+	<title>Cari Keberangkatan</title>
+</head>
+<body>
+
+
+	<div class="mantap2">
+		<div class="mantap3">
+			<h1 class="mantap1 mantap3">Cari data cancel</h1>
+		</div>
+	</div>
+
+<form th:object="${data}" th:action="@{/canceldata}" method="post">
+  <div class="form-group">
+    <label for="nik">Nik</label>
+    <input type="text" class="form-control" id="nik" placeholder="Tanggal"  th:field="*{penumpang}">
+  </div>
+ 
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</body>
+
+</html>

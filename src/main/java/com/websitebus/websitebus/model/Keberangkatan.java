@@ -30,7 +30,7 @@ public class Keberangkatan {
 
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(unique =true,name ="no_polisi",referencedColumnName="nomor_polisi")
+	@JoinColumn(unique =false,name ="no_polisi",referencedColumnName="nomor_polisi")
 	private Bus bus;
 	
 	@OneToOne(cascade = CascadeType.ALL)

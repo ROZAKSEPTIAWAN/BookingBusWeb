@@ -2,7 +2,7 @@ package com.websitebus.websitebus.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,12 +27,12 @@ public class Booking {
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	private long id;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	@JoinColumn(unique =false,name ="id_keberangkatan",referencedColumnName="id")
 	private Keberangkatan keberangkatan;
 
 	// @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	@JoinColumn(name ="nik",referencedColumnName="nik")
 	private Penumpang penumpang;
 
